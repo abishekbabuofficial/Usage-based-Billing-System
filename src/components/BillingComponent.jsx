@@ -4,13 +4,13 @@ import CreditChart from "./CreditChart";
 import RechargeModal from "./RechargeModal";
 import { useBilling } from "../hooks/useBilling";
 
-
+const multiplier = 10;
 const BillingComponent = () => {
   const [showModal, setShowModal] = useState(false); // for showing payment modal card
   const { credits, usageLog, applyBilling, recharge } = useBilling(100);
 
   const handleRecharge = (amount) => {
-    recharge(amount);
+    recharge(amount,multiplier);
   };
 
   const handleUsage = (label, cost) => {

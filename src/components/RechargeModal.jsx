@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 const conversionRate = 10
 const RechargeModal = ({ isOpen, onClose, onRecharge }) => {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   
   const handlePayment = () => {
     setIsProcessing(true);
     setTimeout(() => {
-      const creditsToAdd = amount * conversionRate // ₹1 = 1 credit
-      onRecharge(creditsToAdd);
+      onRecharge(amount);
       setIsProcessing(false);
-      setAmount(0);
+      setAmount("");
       onClose();
     }, 2000);
   };
@@ -25,6 +24,7 @@ const RechargeModal = ({ isOpen, onClose, onRecharge }) => {
         <label className="block text-sm font-medium mb-1">Enter Amount (₹)</label>
         <input
           type="number"
+          placeholder='Enter amount to be recharged'
           className="w-full border border-gray-300 p-2 rounded mb-4"
           value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
